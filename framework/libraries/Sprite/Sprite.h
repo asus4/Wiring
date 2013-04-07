@@ -31,6 +31,8 @@ class Sprite
     uint8_t width() const;
     uint8_t height() const;
     void write(int8_t x, int8_t y, uint8_t value);
+    void writeRow(uint8_t y, uint8_t value);
+    void writeInversedRow(uint8_t y, uint8_t value);
     uint8_t read(int8_t x, int8_t y) const;
 
   private:

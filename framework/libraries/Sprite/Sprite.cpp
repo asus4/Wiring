@@ -113,6 +113,23 @@ void Sprite::write(int8_t x, int8_t y, uint8_t value)
   _buffer[y] = (_buffer[y] & ~(0x01 << x)) | ((value & 0x01) << x);
 }
 
+void Sprite::writeRow(uint8_t y, uint8_t value) {
+  if (!_buffer) return;
+  if (y >= _height) return;
+
+  // inverse horizontal
+  for (int x = 0; x < 8; x++) {
+    write(x, y, (value >> (_width - x - 1)) & 0x01);
+  }
+}
+
+void Sprite::writeInversedRow(uint8_t y, uint8_t value) {
+  if (!_buffer) return;
+  if (y >= _height) return;
+
+  _buffer[y] = value;
+}
+
 /*
 || @description
 || | Get the value at a specific coordinate
